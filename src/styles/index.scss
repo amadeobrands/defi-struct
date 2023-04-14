@@ -1,0 +1,192 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+  }
+  font-size: 14px;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+// Variables 
+$background-color: #0E1531;
+$header-color: #42E8DB;
+$card-color: rgba(66, 232, 219, .8);
+$black-text: #0E1531;
+
+// Common
+
+.page-wrapper {
+  background-color: $background-color;
+  min-height: 100vh;
+  padding: 20px 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+// ! Navbar 
+.navbar-container {
+  height: 55px;
+}
+.navbar-section {
+  display: flex;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 100%;
+  background-color: $background-color;
+  // .navbar-logo {
+  //   display: flex;
+  //   align-items: center;
+  //   img {
+  //     width: 30px;
+  //     height: 30px;
+  //     padding-right: 10px;
+  //   }
+  //   p {
+  //     color: $header-color;
+  //   }
+  // }
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    h2 {
+      color: $header-color;
+      padding: 0 10px;
+      transition: all .2s ease-in-out;
+      &:hover {
+        color: rgb(29, 183, 172);
+      }
+    }
+  }
+}
+
+button.connect-wallet {
+  background-color: $header-color;
+  border: none;
+  border-radius: 10px;
+  padding: 5px 20px;
+  color: $background-color;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  &:hover {
+    background-color: rgb(29, 183, 172);
+  }
+}
+
+// All strategies pages
+main {
+  width: 80%;
+  margin: 0 auto;
+  h1 {
+    margin-top: 20px;
+    color: $header-color
+  }
+}
+
+.strat-title-bar {
+  h2 {
+    color: $header-color;
+  }
+  margin: 20px 0;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+// Strategy Card
+
+.strat-card {
+  background-color: $card-color;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 10px;
+  h3 {
+    color: $header-color;
+  }
+  p {
+    color: $black-text;
+  }
+  display: flex;
+  justify-content: space-between;
+  .strat-card-asset {
+    display: flex;
+    align-items: center;
+    img {
+      width: 15px;
+      height: 15px;
+      padding-right: 10px;
+    }
+  }
+}
+
+// Strategy Details page
+
+.strat-info-container {
+  display: flex;
+}
+
+.menu-bar-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  border-radius: 10px;
+  width: 15%;
+  cursor: pointer;
+  
+  
+  }
+  p {
+    color: $header-color;
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: rgb(29, 183, 172);
+  }
+}
+
+.strat-info {
+  width: 85%;
+}
+.strat-info-item {
+  p {
+    color: $header-color;
+  }
+}
+
+// 1 USDC to ETH conversion box
+.USDC-to-ETH-container {
+  background-color: $card-color;
+  border-radius: 10px;
+  width: fit-content;
+  display: flex;
+  padding: 10px 0;
+  img {
+    height: 18px;
+    padding: 0 10px;
+  }
+  p:last-of-type {
+    padding-right: 10px;
+  }
+  p {
+    color: $black-text;
+  }
+}
+
