@@ -11,7 +11,7 @@
     <a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
     <br />
   <a href="https://brrr.money/">
-    <img src="src/assets/Screen%20Shot%202023-04-15%20at%204.49.33%20PM.png" alt="Logo" height="250">
+    <img src="src/assets/Screen%20Shot%202023-04-16%20at%202.30.31%20AM.png" alt="Logo" height="250">
   </a>
 
 <br />
