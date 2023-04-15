@@ -71,10 +71,11 @@ const DepositForm = () => {
       const humanBalance = web3.utils.fromWei(balance.toString(), 'ether');
       setTokenBalance(humanBalance)
       setContract(contract)
+      setSymbol(await contract.methods.symbol().call())
 
       const vaultContract = new web3.eth.Contract(vaultAbi, vaultAddress)
       setVaultContract(vaultContract)
-      setSymbol(await vaultContract.methods.symbol().call())
+      
     }
     getContract()
     console.log('contract', contract.methods)
