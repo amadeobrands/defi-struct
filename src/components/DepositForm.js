@@ -15,6 +15,7 @@ const DepositForm = () => {
   const [contract, setContract] = useState([]);
   const [vaultContract, setVaultContract] = useState([]);
   const [tokenBalance, setTokenBalance] = useState('');
+  const [approved, setApproved] = useState(null)
 
   const contractAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
   const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
@@ -72,7 +73,7 @@ const DepositForm = () => {
         const allowance = await contract.methods.approve(vaultAddress, allowanceDeposit).send({ from: accounts[0] })
         // const tx = await contract.methods.allowance(accounts[0], vaultAddress ).call();
         console.log('allowance ->', allowance)
-        // console.log('Allowance successful!', tx);
+        setApproved(allowance)
       }
     } catch (error) {
       console.error(error);
@@ -91,11 +92,24 @@ const DepositForm = () => {
         await web3.eth.currentProvider.enable()
         const tx = await vaultContract.methods.deposit(ethDeposit, accounts[0]).send({ from: accounts[0] })
         console.log('EEE transfer successful!', tx);
+        setApproved(tx)
+        
       }
     } catch (error) {
       console.error(error);
     }
   },[accounts, web3, vaultContract, ethAmount])
+
+  // Opens link to external website based on social link clicked
+  function handleExternalLink(e) {
+    window.open(`https://sepolia.etherscan.io/tx/${approved.transactionHash}`, '_blank')
+  }
+
+  function handleClosePopUp(e) {
+    if (e.target.className !== 'approved-tx') {
+      setApproved(null)
+    }
+  }
 
   return (
     <>
@@ -118,6 +132,16 @@ const DepositForm = () => {
         <br />
         <button type="submit">Deposit</button>
       </form>
+      {approved && 
+        <div onClick={handleClosePopUp} className="approved-tx-container">
+          <div 
+            className="approved-tx" 
+          >
+            <p>Success!</p> 
+            <p onClick={handleExternalLink}>View Transaction on Etherscan</p>
+          </div>
+        </div>
+      }
     </>
   );
 };

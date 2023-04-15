@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home'
 import AllStrategies from './pages/AllStrategies'
-import Strategy from './pages/Strategy'
+import StratPage from './pages/StratPage'
 import Navbar from './nav/Navbar'
 import Portfolio from './pages/Portfolio'
 
@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/strategies" element={<AllStrategies />} />
-          <Route path='/strategies/:id' element={<Strategy />} />
+          <Route path='/strategies/:id' element={<StratPage />} />
         </Routes>
       </BrowserRouter>
     </div>

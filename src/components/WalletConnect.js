@@ -7,9 +7,9 @@ const WalletConnect = () => {
   const [account, setAccount] = useState('')
   const [network, setNetwork] = useState('')
   const [balance, setBalance] = useState('')
-  const [error, setError] = useState('')
-  const [strategyInfo, setStrategyInfo] = useState({})
-  const [ longAccount, setLongAccount ] = useState('')
+  const [error, setError] = useState(null)
+  // const [strategyInfo, setStrategyInfo] = useState({})
+  // const [ longAccount, setLongAccount ] = useState('')
   
 
   const connectWallet = async ( ) => {
@@ -22,7 +22,6 @@ const WalletConnect = () => {
         const accounts = await web3.eth.getAccounts()
         await web3.eth.currentProvider.enable().then(console.log)
         
-        setLongAccount(accounts[0])
         if (accounts.length > 0) {
           const shortenedAddress = accounts[0].slice(0, 5) + '...' + accounts[0].slice(-4);
           setAccount(shortenedAddress);
@@ -48,8 +47,9 @@ const WalletConnect = () => {
       } else {
         setError('MetaMask not found!');
       }
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      setError(err)
     }
   }
 
@@ -78,11 +78,12 @@ const WalletConnect = () => {
   return (
     <>
       <button className="connect-wallet">
-      {network === 'SepoliaETH' ? `Balance: ${balance}` : 'Select SepoliaETH'}
+      {network === 'SepoliaETH' ? `${balance}` : 'Select SepoliaETH'}
       </button>
       <button className="connect-wallet" onClick={connectWallet}>
-        {account ? `Connected: ${account}` : 'Connect Wallet'}
+        {account ? `${account}` : 'Connect Wallet'}
       </button>
+      {error && <div>{error}</div>}
     </>
   )
 };

@@ -6,7 +6,7 @@ import exampleToken from '../tokens/exampleToken.json'
 import vaultAbi from '../tokens/vaultContract.json'
 
 //icons
-import eth from '../assets/ETH-icon.png'
+import eth from '../assets/ETH-icon2.png'
 
 const StrategyList = () => {
 

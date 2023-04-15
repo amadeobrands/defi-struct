@@ -5,6 +5,7 @@ import UsdcToEth from "../components/UsdcToEth"
 
 import DepositForm from '../components/DepositForm'
 import WithdrawForm from '../components/WithdrawForm'
+import StrategyInfo from '../components/StrategyInfo'
 
 
 
@@ -16,12 +17,12 @@ const Strategy = ( ) => {
 
   const handlePageSelect = (e) => {
       setId(e.currentTarget.id)
+      console.log(id)
   }
 
   return (
     <div className="page-wrapper">
       <main className="strat-info-container">
-        <StratNav page={id} />
         <section className='strat-info'>
           <StrategyList />
           <UsdcToEth />
