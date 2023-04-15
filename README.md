@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://defi-struct.com/">
-    <img src="src/assets/DeFi%20Struct_Logo_Dark.png" alt="Logo" heigt="220">
+    <img src="src/assets/DeFi%20Struct_Logo_Dark.png" alt="Logo" heigt="80">
   </a>
   <h3 align="center">DeFi Struct - ETH Global Tokyo 2023</h3>
   <p align="center">
@@ -11,17 +11,17 @@
     <a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
     <br />
   <a href="https://brrr.money/">
-    <img src="src/assets/defi-struct-degen.jpeg" alt="Logo" heigt="180">
+    <img src="src/assets/defi-struct-degen.jpeg" alt="Logo" heigt="150">
   </a>
 
 <br />
-    <a href="#contact">Contact us</a>
+    <strong>Contact us</strong>
     ·
     <a href="https://twitter.com/amadeobrands">Amadeo Brands</a>
     ·
     <a href="#">Sean</a>
     .
-    <a href="#">Shawn</a>
+    <a href="https://twitter.com/stonktrading">Shawn</a>
   </p>
 </p>
 
