@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://defi-struct.com/">
-    <img src="src/assets/DeFi%20Struct_Logo_Dark.png" alt="Logo" heigt="80">
+    <img src="src/assets/DeFi%20Struct_Logo_Dark.png" alt="Logo" height="80">
   </a>
   <h3 align="center">DeFi Struct - ETH Global Tokyo 2023</h3>
   <p align="center">
@@ -11,7 +11,7 @@
     <a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
     <br />
   <a href="https://brrr.money/">
-    <img src="src/assets/defi-struct-degen.jpeg" alt="Logo" heigt="150">
+    <img src="src/assets/defi-struct-degen.jpeg" alt="Logo" height="250">
   </a>
 
 <br />
