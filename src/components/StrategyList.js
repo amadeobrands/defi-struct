@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Web3 from 'web3'
 import exampleToken from '../tokens/exampleToken.json'
+import vaultAbi from '../tokens/vaultContract.json'
 
 //icons
 import eth from '../assets/ETH-icon.png'
@@ -18,14 +19,15 @@ const StrategyList = () => {
         // const accounts = await web3.eth.getAccounts();
   
         // Get contract balance after wallet has been connected
-        const tokenAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
+        // const tokenAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
         const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
-        const contract = new web3.eth.Contract(exampleToken, tokenAddress)
+        const vault = new web3.eth.Contract(vaultAbi, vaultAddress)
+        console.log(await vault.methods.asset().call())
         const stratInfo = {
-          name: await contract.methods.name().call(),
-          symbol: await contract.methods.symbol().call(),
-          decimals: await contract.methods.decimals().call(),
-          supply: await contract.methods.totalSupply().call(),
+          name: await vault.methods.name().call(),
+          symbol: await vault.methods.symbol().call(),
+          decimals: await vault.methods.decimals().call(),
+          supply: await vault.methods.totalSupply().call(),
         }
         setStrategyInfo(stratInfo)
         console.log(strategyInfo)

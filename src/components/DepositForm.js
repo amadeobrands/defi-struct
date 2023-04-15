@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Web3 from 'web3';
 import exampleToken from '../tokens/exampleToken.json'
+import vaultAbi from '../tokens/vaultContract.json'
 
 
 
@@ -12,6 +13,8 @@ const DepositForm = () => {
   const [web3, setWeb3] = useState(null);
   const [accounts, setAccounts] = useState([]);
   const [contract, setContract] = useState([]);
+  const [vaultContract, setVaultContract] = useState([]);
+  const [tokenBalance, setTokenBalance] = useState('');
 
   const contractAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
   const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
@@ -39,9 +42,17 @@ const DepositForm = () => {
       setAccounts(accounts);
       console.log('accounts->', accounts)
       
-      
       const contract = new web3.eth.Contract(exampleToken, contractAddress);
-      setContract(contract);
+      const balance = await contract.methods.balanceOf(accounts[0]).call()
+      
+      const humanBalance = web3.utils.fromWei(balance.toString(), 'ether');
+      setTokenBalance(humanBalance)
+      setContract(contract)
+
+      const vaultContract = new web3.eth.Contract(vaultAbi, vaultAddress)
+      // const vaultBalance = await vaultContract.methods.balanceOf(accounts[0]).call()
+      // console.log('vault balance', vaultBalance)
+      setVaultContract(vaultContract);
     }
     getContract()
     console.log('contract', contract.methods)
@@ -78,17 +89,18 @@ const DepositForm = () => {
     try {
       if (ethAmount > 0 && accounts) {
         await web3.eth.currentProvider.enable()
-        const tx = await contract.methods.transfer(vaultAddress, ethDeposit).send({ from: accounts[0] });
-        console.log('ETH deposit successful!', tx);
+        const tx = await vaultContract.methods.deposit(ethDeposit, accounts[0]).send({ from: accounts[0] })
+        console.log('EEE transfer successful!', tx);
       }
     } catch (error) {
       console.error(error);
     }
-  },[accounts, web3, contract, ethAmount])
+  },[accounts, web3, vaultContract, ethAmount])
 
   return (
     <>
       <form className="transfer-form" onSubmit={handleAllowance}>
+        <h2>Allowance Form</h2>
         <label>
           Max Allowance Amount:
           <input type="number" placeholder='0' value={allowanceAmount} onChange={handleAllowanceChange} />
@@ -97,8 +109,10 @@ const DepositForm = () => {
       </form>
 
       <form className="transfer-form" onSubmit={handleDeposit}>
+        <h2>Deposit Form</h2>
         <label>
           EEE Amount:
+          <p>Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
           <input type="number" placeholder='0' value={ethAmount} onChange={handleEthChange} />
         </label>
         <br />
