@@ -50,7 +50,7 @@ const DepositForm = () => {
   };
 
   return (
-    <form onSubmit={handleDeposit}>
+    <form className="transfer-form" onSubmit={handleDeposit}>
       <label>
         ETH Amount:
         <input type="number" value={ethAmount} onChange={handleEthChange} />

@@ -39,17 +39,6 @@ const WalletConnect = () => {
               const etherBalance = web3.utils.fromWei(balance, 'ether')
               setBalance(`${etherBalance} ETH`)
             }
-            // Get contract balance after wallet has been connected
-            const tokenAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
-            const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
-            const contract = new web3.eth.Contract(exampleToken, tokenAddress)
-            const stratInfo = {
-              name: await contract.methods.name().call(),
-              symbol: await contract.methods.symbol().call(),
-              decimals: await contract.methods.decimals().call(),
-              balance: await contract.methods.balanceOf(longAccount).call()
-            }
-            setStrategyInfo(stratInfo)
           } else {
             // Set button status to "Change network to Polygon"
           }
@@ -62,15 +51,23 @@ const WalletConnect = () => {
     }
   }
 
- 
+  // // Get contract balance after wallet has been connected
+  // const tokenAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
+  // const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
+  // const contract = new web3.eth.Contract(exampleToken, tokenAddress)
+  // const stratInfo = {
+  //   name: await contract.methods.name().call(),
+  //   symbol: await contract.methods.symbol().call(),
+  //   decimals: await contract.methods.decimals().call(),
+  //   balance: await contract.methods.balanceOf(longAccount).call()
+  // }
+  // setStrategyInfo(stratInfo)
 
 
   const getNetworkName = (chainId) => {
     switch (chainId) {
       case 11155111:
         return 'SepoliaETH'
-      // case '0x89':
-      //   return 'Polygon Testnet';
       default:
         return 'Polygon Not Connected'
     }
