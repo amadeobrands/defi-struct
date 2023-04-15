@@ -117,6 +117,10 @@ const WithdrawForm = () => {
     setShowBob(!showBob)
   }
 
+  function handleBob(e) {
+    window.open(e.target.id, '_blank')
+  }
+
   return (
     <>
       <form className="transfer-form" onSubmit={handleWithdraw}>
@@ -129,6 +133,7 @@ const WithdrawForm = () => {
             <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
             <button type="submit">Withdraw Privately</button>
             <img src={zkBob} alt="zkBob" />
+            <p className="bob-link" onClick={handleBob} id="https://docs.zkbob.com/zkbob-app/generate-a-secure-address">Click how to create a Receiving Address</p>
           </>
         :
           <>
