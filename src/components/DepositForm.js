@@ -116,19 +116,20 @@ const DepositForm = () => {
       <form className="transfer-form" onSubmit={handleAllowance}>
         <h2>Allowance Form</h2>
         <label>
-          Max Allowance Amount:
-          <input type="number" placeholder='0' value={allowanceAmount} onChange={handleAllowanceChange} />
+          <p>Max Allowance:</p>
         </label>
+          <input type="number" placeholder='0' value={allowanceAmount} onChange={handleAllowanceChange} />
+        
         <button type="submit">Allow</button>
       </form>
 
       <form className="transfer-form" onSubmit={handleDeposit}>
         <h2>Deposit Form</h2>
         <label>
-          EEE Amount:
-          <p>Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
+          <p>EEE Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
+          </label>
           <input type="number" placeholder='0' value={ethAmount} onChange={handleEthChange} />
-        </label>
+        
         <br />
         <button type="submit">Deposit</button>
       </form>

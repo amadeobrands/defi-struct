@@ -149,8 +149,8 @@ main {
 
 // Chart
 .tv-lightweight-charts, table, .strat-chart {
-  width: 500px;
-  height: 300px;
+  width: 350px;
+  height: 200px;
   border-radius: 8px;
 }
 tr, td {
@@ -200,6 +200,32 @@ tr, td {
   }
 }
 
+.strat-info-mid-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
+// lens profile
+.lens-container {
+  // margin: 25px auto;
+  background-color: $card-color;
+  border-radius: 10px;
+  width: 35%;
+}
+.lens-profile {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    height: 40px;
+  }
+  h2 {
+    color: $black-text;
+  }
+}
+
 // 1 USDC to ETH conversion box
 .USDC-to-ETH-container {
   background-color: $card-color;
@@ -226,9 +252,19 @@ tr, td {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 0;
+  margin: 20px auto;
   background-color: $card-color;
   border-radius: 10px;
+  width: 55%;
+  gap: 10px;
+  h2 {
+    font-size: 1.5rem;
+    color: $black-text;
+    padding: 10px 0;
+  }
+  label, p {
+    color: $black-text;
+  }
   input {
     width: 200px;
     height: 30px;
@@ -245,10 +281,14 @@ tr, td {
     color: $header-color;
     margin: 10px 0;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    transition: all .2s ease-in;
     &:hover {
       background-color: rgb(29, 183, 172);
     }
+  }
+  img {
+    transition: all .2s ease-in;
+    height: 40px;
   }
 }
 
@@ -288,3 +328,52 @@ tr, td {
     text-decoration: underline;
   }
 }
+
+// Toggle button
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: grey;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 10px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: $header-color;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 10px;
+}
+
+input:checked + .slider {
+  background-color: $background-color;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+

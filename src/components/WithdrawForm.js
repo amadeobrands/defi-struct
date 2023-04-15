@@ -3,6 +3,9 @@ import Web3 from 'web3';
 import exampleToken from '../tokens/exampleToken.json'
 import vaultAbi from '../tokens/vaultContract.json'
 
+//img
+import zkBob from '../assets/zkBob.svg'
+
 
 
 const WithdrawForm = () => {
@@ -85,17 +88,39 @@ const WithdrawForm = () => {
     }
   }
 
+  // Toggle fuction to show ZK bob withdraw option
+  const [showBob, setShowBob] = useState(false)
+
+  const handleShowBob = () => {
+    setShowBob(!showBob)
+  }
+
   return (
     <>
       <form className="transfer-form" onSubmit={handleWithdraw}>
         <h2>Withdraw Form</h2>
         <label>
-          vEEE Amount:
-          <p>Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
-          <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+          <p>vEEE Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
         </label>
-        <br />
-        <button type="submit">Withdraw</button>
+        {showBob ?
+          <>
+            <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <button type="submit">Withdraw Privately</button>
+            <img src={zkBob} alt="zkBob" />
+          </>
+        :
+          <>
+            <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <button type="submit">Withdraw</button>
+          </>
+      }
+        <label>
+          <p>Toggle to withdraw privetely with zkBob</p>
+        </label>
+        <label className="toggle">
+          <input type="checkbox" checked={showBob} onClick={handleShowBob} />
+          <span className="slider"></span>
+        </label>
       </form>
       {approved && 
         <div onClick={handleClosePopUp} className="approved-tx-container">

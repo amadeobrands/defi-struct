@@ -5,6 +5,7 @@ import vaultAbi from '../tokens/vaultContract.json'
 
 import UsdcToEth from "./UsdcToEth"
 import StratChart from './StratChart'
+import Lens from './Lens'
 
 const StrategyInfo = () => {
   const [web3, setWeb3] = useState(null);
@@ -17,7 +18,7 @@ const StrategyInfo = () => {
   const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
 
     // get contract data and save to global variables
-    useEffect(  () => {
+    useEffect(() => {
       const getContract = async () => {
         if (!window.ethereum) {
           console.error('Web3 not found!');
@@ -56,7 +57,10 @@ const StrategyInfo = () => {
           <p>50% USDC 1,234,241</p>
         </section>
       </div>
-      <StratChart />
+      <div className="strat-info-mid-bar">
+        <StratChart />
+        <Lens />
+      </div>
     </>
   )
 }

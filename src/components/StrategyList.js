@@ -8,7 +8,7 @@ import vaultAbi from '../tokens/vaultContract.json'
 //icons
 import eth from '../assets/ETH-icon2.png'
 
-const StrategyList = () => {
+const StrategyList = ( { web3 } ) => {
 
   const [strategyInfo, setStrategyInfo] = useState({})
   
