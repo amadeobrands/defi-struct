@@ -14,7 +14,7 @@ const Strategies = () => {
           <h2>Risk</h2>
           <h2>REP Score</h2>
           <h2>APY</h2>
-          <h2>TVL</h2>
+          <h2>Supply</h2>
         </div>
         <StrategyList />
       </main>

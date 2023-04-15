@@ -2,11 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import Web3 from 'web3'
 
-import Home from './pages/Home'
+// import Home from './pages/Home'
 import AllStrategies from './pages/AllStrategies'
 import StratPage from './pages/StratPage'
 import Navbar from './nav/Navbar'
-import Portfolio from './pages/Portfolio'
+// import Portfolio from './pages/Portfolio'
 
 function App() {
   const [web3, setWeb3] = useState(null)
@@ -31,8 +31,8 @@ function App() {
       <BrowserRouter>
         <Navbar web3={web3} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/" element={<AllStrategies />} />
+          {/* <Route path="/portfolio" element={<Portfolio />} /> */}
           <Route path="/strategies" element={<AllStrategies />} />
           <Route path='/strategies/:id' element={<StratPage />} />
         </Routes>

@@ -2,12 +2,17 @@ import { useState, useEffect, useCallback } from 'react';
 import Web3 from 'web3';
 import exampleToken from '../tokens/exampleToken.json'
 import vaultAbi from '../tokens/vaultContract.json'
+import { useParams } from 'react-router-dom'
 
 
 
 const DepositForm = () => {
   const [ethAmount, setEthAmount] = useState('');
   const [allowanceAmount, setAllowanceAmount] = useState('');
+
+  const { id } = useParams()
+
+  const stratId = id
 
   //Account, contract, and web3 variables
   const [web3, setWeb3] = useState(null);
@@ -16,9 +21,26 @@ const DepositForm = () => {
   const [vaultContract, setVaultContract] = useState([]);
   const [tokenBalance, setTokenBalance] = useState('');
   const [approved, setApproved] = useState(null)
+  const [contractAddress, setContractAddress] = useState('')
+  const [vaultAddress, setVaultAddress] = useState('')
+  const [symbol, setSymbol] = useState('')
 
-  const contractAddress = '0x0bA5f4cec3eeAaB0fbEF6AF12662BAd760e0D7f9'
-  const vaultAddress = '0x7A31f183E3b59E8FE7a62a18431e73593F3184fe'
+  useEffect(() => {
+    if (stratId === '01') {
+      // DAI
+      setContractAddress('0x68194a729C2450ad26072b3D33ADaCbcef39D574')
+      // dsDAI
+      setVaultAddress('0xA2031Fa4f934E4D4f35f2B056c1cDD5698D59d11')
+    }
+
+    if (stratId === '02') {
+      // GHO
+      setContractAddress('0x5d00fab5f2F97C4D682C1053cDCAA59c2c37900D')
+      // dsGHO
+      setVaultAddress('0xA6517200DeCa178ae06989C768065E55DF660909')
+    }
+  }, [stratId])
+
 
   const handleEthChange = (event) => {
     const { value } = event.target;
@@ -51,13 +73,12 @@ const DepositForm = () => {
       setContract(contract)
 
       const vaultContract = new web3.eth.Contract(vaultAbi, vaultAddress)
-      // const vaultBalance = await vaultContract.methods.balanceOf(accounts[0]).call()
-      // console.log('vault balance', vaultBalance)
-      setVaultContract(vaultContract);
+      setVaultContract(vaultContract)
+      setSymbol(await vaultContract.methods.symbol().call())
     }
     getContract()
     console.log('contract', contract.methods)
-  }, [])
+  }, [vaultAddress, contractAddress])
 
   const handleAllowance = useCallback(async (event) => {
     event.preventDefault()
@@ -78,7 +99,7 @@ const DepositForm = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [allowanceAmount, accounts, web3, contract])
+  }, [allowanceAmount, accounts, web3, contract, vaultAddress])
 
   const handleDeposit = useCallback(async (event) => {
     event.preventDefault();
@@ -126,7 +147,7 @@ const DepositForm = () => {
       <form className="transfer-form" onSubmit={handleDeposit}>
         <h2>Deposit Form</h2>
         <label>
-          <p>EEE Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
+          <p>{symbol && symbol} Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
           </label>
           <input type="number" placeholder='0' value={ethAmount} onChange={handleEthChange} />
         
