@@ -21,8 +21,8 @@
     ·
     <a href="#">Sean</a>
     .
-    <a href="https://twitter.com/stonktrading">Shawn</a>
-<a href="https://youtu.be/cY0LpymT6WM">DEMO Video! DeFi Struct - ETH Global Tokyo 2023</a>
+    <a href="https://twitter.com/stonktrading">Shawn</a><br>
+<a href="https://youtu.be/cY0LpymT6WM">DEMO Video! DeFi Struct - ETH Global Tokyo 2023</a><br>
 <a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
   </p>
 </p>
