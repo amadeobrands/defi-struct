@@ -22,13 +22,10 @@
     <a href="#">Sean</a>
     .
     <a href="https://twitter.com/stonktrading">Shawn</a>
+<a href="https://youtu.be/cY0LpymT6WM">DEMO Video! DeFi Struct - ETH Global Tokyo 2023</a>
+<a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
   </p>
 </p>
-
-<p align="center">
-  <a href="https://youtu.be/cY0LpymT6WM"><h3 align="center">DEMO Video! DeFi Struct - ETH Global Tokyo 2023</h3></a>
-<a href="https://defi-struct.com/"><strong>See DeFi Struct in action!</strong></a>
-<p align="center">
 
 # Getting Started with DeFi Struct!
 
