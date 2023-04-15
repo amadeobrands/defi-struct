@@ -20,6 +20,8 @@ const WalletConnect = () => {
         await windowWithEthereum.ethereum.request({ method: 'eth_requestAccounts' });
         const web3 = new Web3(windowWithEthereum.ethereum);
         const accounts = await web3.eth.getAccounts()
+        await web3.eth.currentProvider.enable().then(console.log)
+        
         setLongAccount(accounts[0])
         if (accounts.length > 0) {
           const shortenedAddress = accounts[0].slice(0, 5) + '...' + accounts[0].slice(-4);
