@@ -14,15 +14,16 @@ const WithdrawForm = () => {
   const [withdrawAmount, setWithdrawAmount] = useState('');
 
   //Account, contract, and web3 variables
-  const [web3, setWeb3] = useState(null);
-  const [accounts, setAccounts] = useState([]);
-  const [contract, setContract] = useState([]);
-  const [vaultContract, setVaultContract] = useState([]);
-  const [tokenBalance, setTokenBalance] = useState('');
+  const [web3, setWeb3] = useState(null)
+  const [accounts, setAccounts] = useState([])
+  const [contract, setContract] = useState([])
+  const [vaultContract, setVaultContract] = useState([])
+  const [tokenBalance, setTokenBalance] = useState('')
   const [approved, setApproved] = useState(null)
   const [contractAddress, setContractAddress] = useState('')
   const [vaultAddress, setVaultAddress] = useState('')
   const [symbol, setSymbol] = useState('')
+  const [bobAddress, setBobAddress] = useState('')
 
   const { id } = useParams()
 
@@ -44,10 +45,15 @@ const WithdrawForm = () => {
     }
   }, [stratId])
 
-  const handleValueChange = (event) => {
-    const { value } = event.target;
-    setWithdrawAmount(Number(value));
-  };
+  const handleValueChange = (e) => {
+    const { value, name } = e.target
+    if (name === 'withdrawAmount') {
+      setWithdrawAmount(Number(value))
+    }
+    if (name === 'bobAddress') {
+      setBobAddress(value)
+    }
+  }
 
    // get contract data and save to global variables
   useEffect(  () => {
@@ -130,7 +136,10 @@ const WithdrawForm = () => {
         </label>
         {showBob ?
           <>
-            <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <p>Quantity:</p>
+            <input type="number" name='withdrawAmount' placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <p>Address:</p>
+            <input type="string" name='bobAddress' placeholder='5fkW3dXTvA8Kizt1EbuRyjWofuqR4Ud1YTjGgY1r8nGosDeSaUreq6bwfF61jWL' value={bobAddress} onChange={handleValueChange} />
             <button type="submit">Withdraw Privately</button>
             <img src={zkBob} alt="zkBob" />
             <p className="bob-link" onClick={handleBob} id="https://docs.zkbob.com/zkbob-app/generate-a-secure-address">Click how to create a Receiving Address</p>
