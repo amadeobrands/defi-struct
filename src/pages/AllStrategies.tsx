@@ -1,7 +1,7 @@
+/* ~~/src/pages/AllStrategies.tsx */
 
-
-import StrategyList from "../components/StrategyList"
-
+// imports
+import StrategyList from '@/components/StrategyList'
 
 const Strategies = () => {
   return (

@@ -1,30 +1,34 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  p, h1, h2, h3, h4, h5, h6 {
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0;
     padding: 0;
   }
   font-size: 14px;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-// Variables 
-$background-color: #0E1531;
-$header-color: #42E8DB;
-$card-color: rgba(66, 232, 219, .8);
-$black-text: #0E1531;
+// Variables
+$background-color: #0e1531;
+$header-color: #42e8db;
+$card-color: rgba(66, 232, 219, 0.8);
+$black-text: #0e1531;
 
 // Common
 
@@ -42,13 +46,13 @@ a {
   color: $header-color;
   display: flex;
   align-items: center;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &:hover {
     color: rgb(29, 183, 172);
   }
 }
 
-// ! Navbar 
+// ! Navbar
 .navbar-container {
   height: 55px;
 }
@@ -66,14 +70,14 @@ a {
     display: flex;
     align-items: center;
     img {
-          // width: 30px;
-          height: 40px;
-          padding-right: 10px;
-        }
+      // width: 30px;
+      height: 40px;
+      padding-right: 10px;
+    }
     h2 {
       color: $header-color;
       padding: 0 10px;
-      transition: all .2s ease-in-out;
+      transition: all 0.2s ease-in-out;
       &:hover {
         color: rgb(29, 183, 172);
       }
@@ -89,7 +93,7 @@ button.connect-wallet {
   color: $background-color;
   margin-left: 10px;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   &:hover {
     background-color: rgb(29, 183, 172);
   }
@@ -101,7 +105,7 @@ main {
   margin: 0 auto;
   h1 {
     margin-top: 20px;
-    color: $header-color
+    color: $header-color;
   }
 }
 
@@ -148,12 +152,15 @@ main {
 }
 
 // Chart
-.tv-lightweight-charts, table, .strat-chart {
+.tv-lightweight-charts,
+table,
+.strat-chart {
   width: 350px;
   height: 200px;
   border-radius: 8px;
 }
-tr, td {
+tr,
+td {
   height: 100%;
 }
 
@@ -165,12 +172,12 @@ tr, td {
   border-radius: 10px;
   width: 15%;
   cursor: pointer;
-  }
-  p {
-    color: $header-color;
-    transition: all .2s ease-in-out;
-    &:hover {
-      color: rgb(29, 183, 172);
+}
+p {
+  color: $header-color;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: rgb(29, 183, 172);
   }
 }
 
@@ -261,7 +268,8 @@ tr, td {
     color: $black-text;
     padding: 10px 0;
   }
-  label, p {
+  label,
+  p {
     color: $black-text;
   }
   input {
@@ -280,13 +288,13 @@ tr, td {
     color: $header-color;
     margin: 10px 0;
     cursor: pointer;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     &:hover {
       background-color: rgb(29, 183, 172);
     }
   }
   img {
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     height: 40px;
   }
   .bob-link {
@@ -296,7 +304,7 @@ tr, td {
 
 // Approved message link
 .approved-tx-container {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: rgba(0, 0, 0, 0.85);
   position: fixed;
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.85);
@@ -318,7 +326,8 @@ tr, td {
   border-radius: 10px;
   width: 33%;
   height: 33%;
-  box-shadow: 0 0 6px rgba(0, 0, 0, .4), 0 14px 20px rgba(0, 0, 0, .1), 0 20px 28px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), 0 14px 20px rgba(0, 0, 0, 0.1),
+    0 20px 28px rgba(0, 0, 0, 0.1);
   p {
     display: flex;
     justify-content: center;
@@ -351,21 +360,21 @@ tr, td {
   right: 0;
   bottom: 0;
   background-color: grey;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 10px;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
   bottom: 4px;
   background-color: $header-color;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border-radius: 10px;
 }
 
@@ -378,4 +387,3 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-

@@ -1,22 +1,22 @@
-import { useState, useEffect, useCallback } from 'react';
-import Web3 from 'web3';
-import exampleToken from '../tokens/exampleToken.json'
-import vaultAbi from '../tokens/vaultContract.json'
+/* ~~/src/components/WithdrawForm.tsx */
+
+// imports
+import { useState, useEffect, useCallback } from 'react'
+import Web3 from 'web3'
+import exampleToken from '@/tokens/exampleToken.json'
+import vaultAbi from '@/tokens/vaultContract.json'
 import { useParams } from 'react-router-dom'
 
-//img
-import zkBob from '../assets/zkBob.svg'
-
-
+// img
+import zkBob from '@/assets/zkBob.svg'
 
 const WithdrawForm = () => {
-
-  const [withdrawAmount, setWithdrawAmount] = useState('');
+  const [withdrawAmount, setWithdrawAmount] = useState('')
 
   //Account, contract, and web3 variables
   const [web3, setWeb3] = useState(null)
   const [accounts, setAccounts] = useState([])
-  const [contract, setContract] = useState([])
+  const [_, setContract] = useState([])
   const [vaultContract, setVaultContract] = useState([])
   const [tokenBalance, setTokenBalance] = useState('')
   const [approved, setApproved] = useState(null)
@@ -45,9 +45,10 @@ const WithdrawForm = () => {
     }
   }, [stratId])
 
-  const handleValueChange = (e) => {
+  const handleValueChange = e => {
     const { value, name } = e.target
     if (name === 'withdrawAmount') {
+      // @ts-ignore
       setWithdrawAmount(Number(value))
     }
     if (name === 'bobAddress') {
@@ -55,59 +56,78 @@ const WithdrawForm = () => {
     }
   }
 
-   // get contract data and save to global variables
-  useEffect(  () => {
+  // get contract data and save to global variables
+  useEffect(() => {
     const getContract = async () => {
-      if (!window.ethereum) {
-        console.error('Web3 not found!');
-        return;
+      let _window: { ethereum?: any } & Window = window
+      if (!_window.ethereum) {
+        console.error('Web3 not found!')
+        return
       }
-      const web3 = new Web3(window.ethereum)
+      const web3 = new Web3(_window.ethereum)
+      // @ts-ignore
       setWeb3(web3)
       const accounts = await web3.eth.requestAccounts()
-      setAccounts(accounts);
+      // @ts-ignore
+      setAccounts(accounts)
       console.log('accounts->', accounts)
-      
+
       //Token contract
-      const contract = new web3.eth.Contract(exampleToken, contractAddress);
+      // @ts-ignore
+      const contract = new web3.eth.Contract(exampleToken, contractAddress)
       const balance = await contract.methods.balanceOf(accounts[0]).call()
       console.log('balance', balance)
-      setContract(contract);
+      // @ts-ignore
+      setContract(contract)
 
       // Vault contract
+      // @ts-ignore
       const vaultContract = new web3.eth.Contract(vaultAbi, vaultAddress)
       const vaultBalance = await vaultContract.methods.balanceOf(accounts[0]).call()
       console.log('vault balance', vaultBalance)
-      setVaultContract(vaultContract);
+      // @ts-ignore
+      setVaultContract(vaultContract)
       setSymbol(await vaultContract.methods.symbol().call())
       setTokenBalance(web3.utils.fromWei(vaultBalance.toString(), 'ether'))
     }
     getContract()
+    // @ts-ignore
     console.log('contract', vaultContract.methods)
   }, [vaultAddress, contractAddress])
 
   // Withdraw function
-  const handleWithdraw = useCallback(async (event) => {
-    event.preventDefault();
-    
-    const withdraw = web3.utils.toWei(withdrawAmount.toString(), 'ether');
-    console.log('converting eth amount ->', withdraw)
+  const handleWithdraw = useCallback(
+    async event => {
+      event.preventDefault()
 
-    console.log('pre-deposit info', contractAddress, typeof withdraw)
-    try {
-      if (withdrawAmount > 0 && accounts) {
-        await web3.eth.currentProvider.enable()
-        const tx = await vaultContract.methods.withdraw(withdraw, accounts[0], accounts[0]).send({ from: accounts[0] })
-        console.log('vEEE withdraw successful!', tx);
+      // @ts-ignore
+      const withdraw = web3.utils.toWei(withdrawAmount.toString(), 'ether')
+      console.log('converting eth amount ->', withdraw)
+
+      console.log('pre-deposit info', contractAddress, typeof withdraw)
+      try {
+        // @ts-ignore
+        if (withdrawAmount > 0 && accounts) {
+          // @ts-ignore
+          await web3.eth.currentProvider.enable()
+          // @ts-ignore
+          const tx = await vaultContract.methods
+            .withdraw(withdraw, accounts[0], accounts[0])
+            .send({ from: accounts[0] })
+          console.log('vEEE withdraw successful!', tx)
+        }
+      } catch (error) {
+        console.error(error)
       }
-    } catch (error) {
-      console.error(error);
-    }
-  },[accounts, web3, vaultContract, withdrawAmount, contractAddress])
+    },
+    [accounts, web3, vaultContract, withdrawAmount, contractAddress]
+  )
 
   // Opens link to external website based on social link clicked
-  function handleExternalLink(e) {
-    window.open(`https://sepolia.etherscan.io/tx/${approved.transactionHash}`, '_blank')
+  function handleExternalLink(approved) {
+    if (!!approved) {
+      window.open(`https://sepolia.etherscan.io/tx/${approved.transactionHash}`, '_blank')
+    }
   }
 
   function handleClosePopUp(e) {
@@ -132,24 +152,49 @@ const WithdrawForm = () => {
       <form className="transfer-form" onSubmit={handleWithdraw}>
         <h2>Withdraw Form</h2>
         <label>
-          <p>{symbol && symbol}  Balance: {tokenBalance && <span>{tokenBalance}</span>}</p>
+          <p>
+            {symbol && symbol} Balance: {tokenBalance && <span>{tokenBalance}</span>}
+          </p>
         </label>
-        {showBob ?
+        {showBob ? (
           <>
             <p>Quantity:</p>
-            <input type="number" name='withdrawAmount' placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <input
+              type="number"
+              name="withdrawAmount"
+              placeholder="0"
+              value={withdrawAmount}
+              onChange={handleValueChange}
+            />
             <p>Address:</p>
-            <input type="string" name='bobAddress' placeholder='5fkW3dXTvA8Kizt1EbuRyjWofuqR4Ud1YTjGgY1r8nGosDeSaUreq6bwfF61jWL' value={bobAddress} onChange={handleValueChange} />
+            <input
+              type="string"
+              name="bobAddress"
+              placeholder="5fkW3dXTvA8Kizt1EbuRyjWofuqR4Ud1YTjGgY1r8nGosDeSaUreq6bwfF61jWL"
+              value={bobAddress}
+              onChange={handleValueChange}
+            />
             <button type="submit">Withdraw Privately</button>
             <img src={zkBob} alt="zkBob" />
-            <p className="bob-link" onClick={handleBob} id="https://docs.zkbob.com/zkbob-app/generate-a-secure-address">Click how to create a Receiving Address</p>
+            <p
+              className="bob-link"
+              onClick={handleBob}
+              id="https://docs.zkbob.com/zkbob-app/generate-a-secure-address"
+            >
+              Click how to create a Receiving Address
+            </p>
           </>
-        :
+        ) : (
           <>
-            <input type="number" placeholder='0' value={withdrawAmount} onChange={handleValueChange} />
+            <input
+              type="number"
+              placeholder="0"
+              value={withdrawAmount}
+              onChange={handleValueChange}
+            />
             <button type="submit">Withdraw</button>
           </>
-      }
+        )}
         <label>
           <p>Toggle to withdraw privetely with zkBob</p>
         </label>
@@ -158,16 +203,14 @@ const WithdrawForm = () => {
           <span className="slider"></span>
         </label>
       </form>
-      {approved && 
+      {approved && (
         <div onClick={handleClosePopUp} className="approved-tx-container">
-          <div 
-            className="approved-tx" 
-          >
-            <p>Success!</p> 
+          <div className="approved-tx">
+            <p>Success!</p>
             <p onClick={handleExternalLink}>View Transaction on Etherscan</p>
           </div>
         </div>
-      }
+      )}
     </>
   )
 }

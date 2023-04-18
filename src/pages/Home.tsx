@@ -1,3 +1,4 @@
+/* ~~/src/pages/Home.tsx */
 
 const Home = () => {
   return (
