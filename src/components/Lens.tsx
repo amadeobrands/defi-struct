@@ -1,4 +1,7 @@
-import defiStruct from '../assets/DeFi-Struct-logo.png'
+/* ~~/src/components/Lens.tsx */
+
+// imports
+import defiStruct from '@/assets/DeFi-Struct-logo.png'
 
 const Lens = () => {
   return (

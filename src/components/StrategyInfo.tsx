@@ -1,11 +1,14 @@
-import { useEffect, useState } from 'react'
-import Web3 from 'web3';
-import exampleToken from '../tokens/exampleToken.json'
-import vaultAbi from '../tokens/vaultContract.json'
+/* ~~/src/components/StrategyInfo.tsx */
 
-import UsdcToEth from "./UsdcToEth"
-import StratChart from './StratChart'
-import Lens from './Lens'
+// import { useEffect, useState } from 'react'
+// import Web3 from 'web3';
+// import exampleToken from '@/tokens/exampleToken.json'
+// import vaultAbi from '@/tokens/vaultContract.json'
+
+// imports
+import UsdcToEth from '@/components/UsdcToEth'
+import StratChart from '@/components/StratChart'
+import Lens from '@/components/Lens'
 
 const StrategyInfo = () => {
   // const [web3, setWeb3] = useState(null);
@@ -29,13 +32,13 @@ const StrategyInfo = () => {
   //       const accounts = await web3.eth.requestAccounts()
   //       setAccounts(accounts);
   //       console.log('accounts->', accounts)
-        
+
   //       //Token contract
   //       const contract = new web3.eth.Contract(exampleToken, vaultAddress);
   //       const balance = await contract.methods.balanceOf(accounts[0]).call()
   //       console.log('balance', balance)
   //       setContract(contract);
-  
+
   //       // Vault contract
   //       const vaultContract = new web3.eth.Contract(vaultAbi, vaultAddress)
   //       const vaultBalance = await vaultContract.methods.balanceOf(accounts[0]).call()
